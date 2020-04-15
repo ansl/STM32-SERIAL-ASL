@@ -1,7 +1,7 @@
 
 #include "STM32-SERIAL-ASL.h"
 
-int Serial_print(UART_HandleTypeDef *huart,...)
+int Serial_print(UART_HandleTypeDef *huart,enum format frmt,...)
 { 
 	int n=0;
 	char data[40]="";
@@ -12,10 +12,8 @@ int Serial_print(UART_HandleTypeDef *huart,...)
 	val.a=0;
 	val.b=0;
 	val.c=0;
-	enum format frmt;
 	enum disp_format d_frmt;
 	enum NL newline;
-	frmt=va_arg(args, int);
 		switch (frmt){
 			case _uint:
 				val.b=(uint32_t)va_arg(args, uint32_t);
@@ -25,6 +23,10 @@ int Serial_print(UART_HandleTypeDef *huart,...)
 			break;
 			case _float:
 				val.c=va_arg(args, double);
+			break;
+			case _sprintf:
+				val.d=va_arg(args, char * );
+
 			break;
 			// default:
 			// 	val.a=va_arg(args, int);

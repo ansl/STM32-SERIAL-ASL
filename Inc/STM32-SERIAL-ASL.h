@@ -21,12 +21,13 @@ struct val_types{
 		int32_t a;
 		uint32_t b;
 		double c;
+		char * d;
 	};
-enum format{_uint,_int,_float};
+enum format{_uint,_int,_float,_sprintf};
 enum disp_format{DEC,BIN,HEX};
 enum NL{x,NL};
 //  int Serial_print(UART_HandleTypeDef *huart,float num ,char* type[3]);
-int Serial_print(UART_HandleTypeDef *huart,...); //huart,format,value,disp_format
+int Serial_print(UART_HandleTypeDef *huart,enum format frmt,...); //huart,format,value,disp_format
 //int Serial_print(UART_HandleTypeDef *huart,uint8_t num ,char* type[3]);
 //bool print(uint32_t num ,char* type[]=0);
 //bool println(char* string);
